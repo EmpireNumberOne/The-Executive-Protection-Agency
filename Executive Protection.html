@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        <title>The Executive Protection Service</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127710933-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-127710933-1');
+        </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <?php # Script 11.1 - email.php
+    
+    // Check for form submission:
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        // Minimal form validation:
+        if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['comments']) ) {
+
+            // Create the body:
+            $body = "Name: {$_POST['name']}\n\nComments: {$_POST['comments']}";
+
+            // Make it no longer than 70 characters long:
+            $body = wordwrap($body, 70);
+
+            // Send the email:
+            mail('Nate77exprotection@gmail.com', 'Contact Form Submission' , $body,
+            "From: {$_POST['email']}");
+            
+            // Print a message:
+            echo '<p><em>Your message has been sent.</em></p>';
+
+            // Clear $_POST (so that the form's not sticky):
+            $_POST = [];
+
+        } else {
+            echo '<p style="font-weight: bold; color: #C00">Please fill out the form completely.
+            </p>';    
+        }    
+        
+    } // End of main isset() IF.
+    
+    // Create the HTML form:
+    ?>
+    <h1 align="left"><strong>The Executive Protection Service</strong></h1>
+
+    
+
+    <style type text="text/css">
+
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+
+
+
+        /* make keyframes that tell the start state and the end state of our object */
+        @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+        .fade-in {
+            opacity:0;  /* make things invisible upon start */
+            -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+            -moz-animation:fadeIn ease-in 1;
+            animation:fadeIn ease-in 1;
+
+            -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+            -moz-animation-fill-mode:forwards;
+            animation-fill-mode:forwards;
+
+           -webkit-animation-duration:1s;
+           -moz-animation-duration:1s;
+            animation-duration:1s;
+        }
+
+        .fade-in.one {
+           -webkit-animation-delay: 0.7s;
+           -moz-animation-delay: 0.7s;
+            animation-delay: 0.7s;
+        }
+
+        .fade-in.two {
+           -webkit-animation-delay: 1.2s;
+           -moz-animation-delay:1.2s;
+            animation-delay: 1.2s;
+        }
+
+        .fade-in.three {
+            -webkit-animation-delay: 1.6s;
+            -moz-animation-delay: 1.6s;
+            animation-delay: 1.6s;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: serif;
+        }
+
+        /*---make a basic box ---*/
+        .box {
+            width:  350px;
+            height: 300px;
+            position: left;
+            margin: 10px;
+            float: left;
+            border: 2px solid #333;
+            background: #999;
+        }    
+
+        h1  {
+            padding: 10px;
+            margin:  10px; 
+        }
+    
+        form   {
+            position: relative;
+            right:         0px;
+            left:        720px;
+            bottom:        0px;
+            top:          40px; 
+            width:       420px;
+            margin:       10px; 
+            padding:      10px;
+            font-weight:   550;
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+
+        form div {
+            margin-bottom: 1em;
+        }
+        div.submit input {
+            margin-left: 0px;
+            color: white;
+            background: black;
+            border: 1px black;
+            font-size: 25px;
+            font-weight: 550;    
+        }
+        label.field {
+            display: block;
+            float: center;
+            margin-right: 15px;
+            width: 150px;
+            text-align: left;
+        }
+        input [type="text"], select, textarea {
+            width: 300px;
+            font: 18px serif;
+            border: solid 2px black;
+            background-color: white;
+            color: black;
+            float: center;
+        }
+        div.required label.field {
+            font-weight: bold;
+        }
+        div.required input, div.required select {
+            background-color: white;
+            border: solid 2px black;
+            font-weight: bold;
+            
+        }
+        /* Message */
+        .message {   
+            position: relative;
+            top:   20px;
+            left:  10px;
+            font-size: 25px;
+            width: 100%;
+			color: white;
+            margin: 10px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Company Info */
+        .company {
+            position: absolute;
+            top:     150px;
+            bottom:   50px;
+            left:      0px;
+            right:     0px;
+            font-size: 30px;
+            font-weight: 550;
+            width: 500px;
+            color: white; 
+            text-align: left;    
+
+        }
+        i.fa {
+            position: absolute;
+            font-size: 100px;
+            color: white;
+            text-align: left;
+            top:350px;
+            bottom:0;
+            left: 0px;
+            right:0;
+            padding: 0px;
+            margin:  0px;
+        }    
+
+        /* Footer */
+        
+        footer {
+            position: absolute;
+            font-size: 30px;
+     	    top: 600px;
+     	    bottom: 0px;
+            left: -100px;
+            right: 0px;
+            height: 100%; 
+     	    width: 1000px;
+     	    padding: 5px;
+     	    margin:  5px;
+        }         
+
+    </style>
+    
+
+
+    <body>
+        <div class="container">
+            <div class="box fade-in one">
+                <img src="Images/Executive Protection 1.jpg" width="350" height="300" style="border:4px solid black;margin-right: 15px;">
+            </div>
+
+            <div class="box fade-in two">
+                <img src="Images/Executive Protection 2.jpg" width="350" height="300" style="border:4px solid black; margin-right: 15px;">
+            </div>
+
+            <div class="box fade-in three">
+                <img src="Images/Executive Protection 3.jpg" width="350" height="300" style="border:4px solid black; margin-right: 15px;">
+            </div>
+
+            <div>
+                <div class="message">The Executive Protection Service provides service to customers in the Las Vegas, Henderson and Green Valley areas. The Executive Protection Service supports tourism by providing knowledgeable agents to escort tourists visiting the Las Vegas strip, Freemont Experience, Hoover Dam and other major attractions in Las Vegas. Tourists receive excellent service at all hotels, restaurants and casinos. The Executive Protection Service is dedicated to making sure our customers enjoy their visit to Las Vegas and return to request The Executive Protection Service in the future. The Executive Protection Service employs military veterans who pay attention to detail. All customers are considered high priority.</aside>
+            </div> 
+        
+
+
+
+
+		
+			
+	
+
+        <!--right column -->
+            <div class="col-sm-4">
+			        <form method="post" action="mailto:nate77exprotection@gmail.com">
+                        <form action="/register" method="post"
+                            enctype="multipart/form-data">
+                            <h1>Contact Us</h1>
+                        <div class="required">
+                            <label class="field" for="first name">First Name</label>
+                                <input id="first name" type="text">
+                        </div>
+                        <div class="required">
+                            <label class="field" for="last name">Last Name</label>
+                                <input id="last name" type="text">
+                        </div>
+                        <div class="required">
+                            <label class="field" for="email address">Email Address</label>
+                                <input id="email address" type="text">
+                        </div>    
+                        <div>
+                            <label class="field" for="message">Message</label>
+                                <textarea id="bio" rows="6" cols="40"></textarea>
+                        </div>
+                        <div class="submit">
+                            <input type="submit" value="Submit">
+                        </div>
+
+                    </form>
+            
+            <div class="company">
+                <p>The Executive Protection Service </p>
+                <p> PO Box 50114</p>
+                <p> Henderson, Nevada, 89016</p>
+                <p> (702) 374-3350</p>    
+
+
+
+                  <div class="icon-bar">
+                     <a href="https://www.instagram.com/theexecutiveprotectionlv/" title="Website name"><i class="fa fa-instagram"></i></a>
+             
+
+		   
+
+        
+            <div class="footer">
+                <footer>    
+                    <large>&copy; Copyright 2019, The Executive Protection Service</large>   
+                </footer>
+
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>   
+       
+	</body>
+</html>
